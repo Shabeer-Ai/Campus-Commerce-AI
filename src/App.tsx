@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
@@ -13,10 +13,16 @@ import { ChatPage } from "./pages/ChatPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { AdminPage } from "./pages/AdminPage";
 
+// Dynamically select HashRouter on GitHub Pages to prevent 404 routing errors on page refresh, and BrowserRouter elsewhere
+const Router: React.ComponentType<{ children: React.ReactNode }> = 
+  window.location.hostname.includes("github.io") || window.location.hostname.includes("github.com")
+    ? HashRouter
+    : BrowserRouter;
+
 export default function App() {
   return (
     <AppProvider>
-      <BrowserRouter>
+      <Router>
         <div className="relative flex min-h-screen flex-col bg-[#050816]">
           {/* Global Sticky Header Nav */}
           <Navbar />
@@ -39,7 +45,8 @@ export default function App() {
           {/* Global Footing Nav */}
           <Footer />
         </div>
-      </BrowserRouter>
+      </Router>
     </AppProvider>
   );
 }
+
