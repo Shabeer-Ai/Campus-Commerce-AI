@@ -1,0 +1,6 @@
+{
+  "name": "Campus Commerce AI",
+  "description": "An AI-powered collegiate marketplace for verified students to buy, sell, exchange, rent, and donate products with semantic search and intelligent recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
