@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Product } from "../types";
+import { motion } from "motion/react";
 
 export const ProfilePage: React.FC = () => {
   const { currentUser, wishlist, toggleWishlist, products } = useApp();
@@ -29,7 +30,12 @@ export const ProfilePage: React.FC = () => {
   const savedProducts = products.filter(p => wishlist.includes(p.id));
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"
+    >
       
       {/* Profile Header Block */}
       {currentUser && (
@@ -187,7 +193,7 @@ export const ProfilePage: React.FC = () => {
         </div>
       )}
 
-    </div>
+    </motion.div>
   );
 };
 export default ProfilePage;

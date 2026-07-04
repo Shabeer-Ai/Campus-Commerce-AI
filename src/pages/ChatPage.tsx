@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import { ChatMessage, Chat } from "../types";
+import { motion } from "motion/react";
 
 export const ChatPage: React.FC = () => {
   const { currentUser, chats, fetchChats } = useApp();
@@ -57,7 +58,12 @@ export const ChatPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 h-[calc(100vh-140px)] flex flex-col">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 h-[calc(100vh-140px)] flex flex-col"
+    >
       <div className="flex-1 flex rounded-2xl overflow-hidden glass-panel border border-white/5 bg-[#02050f]/80 min-h-0">
         
         {/* Sidebar chats list */}
@@ -199,7 +205,7 @@ export const ChatPage: React.FC = () => {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default ChatPage;

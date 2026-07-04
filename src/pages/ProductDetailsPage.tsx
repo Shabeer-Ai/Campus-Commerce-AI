@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import { Product } from "../types";
+import { motion } from "motion/react";
 
 export const ProductDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -86,7 +87,12 @@ export const ProductDetailsPage: React.FC = () => {
   const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 2);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8"
+    >
       
       {/* Back button */}
       <Link 
@@ -272,7 +278,7 @@ export const ProductDetailsPage: React.FC = () => {
         </div>
       )}
 
-    </div>
+    </motion.div>
   );
 };
 export default ProductDetailsPage;

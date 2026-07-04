@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import { AIAnalysisResult } from "../types";
+import { motion } from "motion/react";
 
 export const SellPage: React.FC = () => {
   const navigate = useNavigate();
@@ -75,7 +76,12 @@ export const SellPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto max-w-4xl px-4 py-8 sm:px-6"
+    >
       
       {/* Header */}
       <div className="space-y-2 mb-10 text-center sm:text-left">
@@ -187,7 +193,7 @@ export const SellPage: React.FC = () => {
                 type="button"
                 onClick={handleAIAnalyze}
                 disabled={isAnalyzing}
-                className="flex-1 py-3 text-xs font-bold rounded-xl border border-cyan-500/20 bg-cyan-500/5 text-cyan-300 hover:bg-cyan-500/10 flex items-center justify-center gap-1.5 transition-all"
+                className="flex-1 py-3 text-xs font-bold rounded-xl border border-cyan-500/20 bg-cyan-500/5 text-cyan-300 hover:bg-cyan-500/10 flex items-center justify-center gap-1.5 transition-all cursor-pointer"
               >
                 <Sparkles className="h-4 w-4" />
                 {isAnalyzing ? "Analyzing..." : "Analyze with Gemini"}
@@ -195,7 +201,7 @@ export const SellPage: React.FC = () => {
               
               <button 
                 type="submit"
-                className="flex-1 py-3 text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl hover:opacity-90 transition-all"
+                className="flex-1 py-3 text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl hover:opacity-90 transition-all cursor-pointer"
               >
                 Submit Listing
               </button>
@@ -207,12 +213,17 @@ export const SellPage: React.FC = () => {
         <div className="space-y-6">
           <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-4">
             <h3 className="text-sm font-bold tracking-wider uppercase text-slate-300 flex items-center gap-1.5">
-              <Sparkles className="h-4 w-4 text-cyan-400" />
+              <Sparkles className="h-4 w-4 text-cyan-400 font-bold" />
               Gemini Optimization
             </h3>
             
             {analysisResult ? (
-              <div className="space-y-4 text-left">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-4 text-left"
+              >
                 <div className="p-3 bg-cyan-500/5 rounded-xl border border-cyan-500/20">
                   <span className="text-[10px] text-cyan-400 font-bold uppercase tracking-wider block font-mono">Suggested Price Bracket</span>
                   <div className="flex items-center gap-1.5 mt-1">
@@ -236,7 +247,7 @@ export const SellPage: React.FC = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ) : (
               <p className="text-xs text-slate-400 leading-relaxed">
                 Provide a title and run the <strong>Gemini Analyzer</strong> to automatically predict fair pricing benchmarks, ensure listing compliance, and optimize your keywords to sell to classmates faster!
@@ -245,7 +256,7 @@ export const SellPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default SellPage;

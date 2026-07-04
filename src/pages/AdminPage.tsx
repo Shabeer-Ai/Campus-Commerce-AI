@@ -10,6 +10,7 @@ import {
   CheckCircle,
   FileText
 } from "lucide-react";
+import { motion } from "motion/react";
 
 export const AdminPage: React.FC = () => {
   const { products } = useApp();
@@ -27,7 +28,12 @@ export const AdminPage: React.FC = () => {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-10">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-10"
+    >
       
       {/* Title */}
       <div className="space-y-2 text-center sm:text-left">
@@ -118,7 +124,7 @@ export const AdminPage: React.FC = () => {
 
       </div>
 
-    </div>
+    </motion.div>
   );
 };
 export default AdminPage;
